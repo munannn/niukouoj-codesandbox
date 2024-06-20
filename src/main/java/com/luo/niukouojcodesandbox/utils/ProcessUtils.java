@@ -1,6 +1,6 @@
 package com.luo.niukouojcodesandbox.utils;
 
-import com.luo.niukouojcodesandbox.model.ProcessExecuteMessage;
+import com.luo.niukouojcodesandbox.model.ExecuteMessage;
 import org.springframework.util.StopWatch;
 
 import java.io.BufferedReader;
@@ -20,15 +20,14 @@ public class ProcessUtils {
      * @param process
      * @return
      */
-    public static ProcessExecuteMessage getProcessExecuteMessage(Process process, String operation) {
-        ProcessExecuteMessage processExecuteMessage = new ProcessExecuteMessage();
-
+    public static ExecuteMessage getProcessExecuteMessage(Process process, String operation) {
+        ExecuteMessage executeMessage = new ExecuteMessage();
         try {
             StopWatch stopWatch = new StopWatch();
             stopWatch.start();
             // 等待程序执行，获取退出值
             int exitValue = process.waitFor();
-            processExecuteMessage.setExitValue(exitValue);
+            executeMessage.setExitValue(exitValue);
             // 判断退出值，0为正常退出，其他为错误退出
             if (exitValue == 0) {
                 System.out.println(operation + "成功");
@@ -39,7 +38,7 @@ public class ProcessUtils {
                 while ((compileOutputLine = bufferedReader.readLine()) != null) {
                     compileOutputStringBuilder.append(compileOutputLine);
                 }
-                processExecuteMessage.setMessage(compileOutputStringBuilder.toString());
+                executeMessage.setMessage(compileOutputStringBuilder.toString());
             } else {
                 System.out.println(operation + "失败，退出值为：" + exitValue);
                 StringBuilder compileOutputStringBuilder = new StringBuilder();
@@ -58,14 +57,14 @@ public class ProcessUtils {
                 while ((errorCompileOutputLine = errorBufferedReader.readLine()) != null) {
                     errorCompileOutputStringBuilder.append(errorCompileOutputLine);
                 }
-                processExecuteMessage.setErrorMessage(errorCompileOutputStringBuilder.toString());
+                executeMessage.setErrorMessage(errorCompileOutputStringBuilder.toString());
             }
             stopWatch.stop();
             long time = stopWatch.getLastTaskTimeMillis();
-            processExecuteMessage.setTime(time);
+            executeMessage.setTime(time);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        return processExecuteMessage;
+        return executeMessage;
     }
 }

@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExecuteCodeRequest {
-
     /**
      * 代码语言
      */
@@ -32,5 +31,4 @@ public class ExecuteCodeRequest {
      * 输入用例
      */
     private List<String> inputCaseList;
-
 }

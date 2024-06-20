@@ -5,11 +5,10 @@ import lombok.Data;
 /**
  * @author 木南
  * @version 1.0
- * @Description 进程执行信息对象
+ * @Description 执行信息
  */
 @Data
-public class ProcessExecuteMessage {
-
+public class ExecuteMessage {
     /**
      * 退出值，0为正常退出
      */
@@ -29,4 +28,9 @@ public class ProcessExecuteMessage {
      * 程序执行时间
      */
     private Long time;
+
+    /**
+     * 程序占用内存
+     */
+    private Long memory;
 }
