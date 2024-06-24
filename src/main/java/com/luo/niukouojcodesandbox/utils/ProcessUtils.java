@@ -48,7 +48,6 @@ public class ProcessUtils {
                 while ((compileOutputLine = bufferedReader.readLine()) != null) {
                     compileOutputStringBuilder.append(compileOutputLine);
                 }
-                System.out.println("compileOutputStringBuilder:" + compileOutputStringBuilder);
                 // 逐行从进程中读取错误输出
                 StringBuilder errorCompileOutputStringBuilder = new StringBuilder();
                 BufferedReader errorBufferedReader =

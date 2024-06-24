@@ -1,7 +1,10 @@
 public class Main {
     public static void main(String[] args) {
-        int a = Integer.parseInt(args[0]);
-        int b = Integer.parseInt(args[1]);
-        System.out.println("结果：" + (a + b));
+        String word = args[0];
+        System.out.println(getLength(word));
+    }
+    public static int getLength(String word) {
+        return word.length();
     }
 }
+
